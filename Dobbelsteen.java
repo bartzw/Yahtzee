@@ -10,14 +10,14 @@ public class Dobbelsteen {
     String dobbelWaardeString;
     boolean vasthouden;
 
-    Dobbelsteen(int dobbelsteenNr, int dobbelWaarde, String dobbelWaardeString, boolean vasthouden) {
+    private Dobbelsteen(int dobbelsteenNr, int dobbelWaarde, String dobbelWaardeString, boolean vasthouden) {
         this.dobbelsteenNr = dobbelsteenNr;
         this.dobbelWaarde = dobbelWaarde;
         this.dobbelWaardeString = dobbelWaardeString;
         this.vasthouden = vasthouden;
     }
 
-    public static Dobbelsteen gooiDobbelsteen(int spelerNr) {
+    static Dobbelsteen gooiDobbelsteen(int spelerNr) {
         Dobbelsteen dobbel = null;
         ArrayList<Dobbelsteen> getdobbelsteen = spelers.get(spelerNr).getDobbelstenen();
         for (int i = 0; i < 5; i++) {
@@ -28,7 +28,7 @@ public class Dobbelsteen {
         }
         return dobbel;
     }
-    public static Dobbelsteen gooiDobbelsteenNogEenKeer(int spelerNr) {
+    static Dobbelsteen gooiDobbelsteenNogEenKeer(int spelerNr) {
         Dobbelsteen dobbel = null;
         ArrayList<Dobbelsteen> getdobbelsteen = spelers.get(spelerNr).getDobbelstenen();
         for (int i = 0; i < 5; i++) {
@@ -51,27 +51,24 @@ public class Dobbelsteen {
         dobbelsteenLijst.add(dobbelsteen);
         return dobbelsteenLijst;
     }
-    public boolean getVasthouden() {
+    boolean getVasthouden() {
         return vasthouden;
     }
-    public boolean getVasthouden(int dobbelsteenNr, int spelerNr) {
+    private boolean getVasthouden(int dobbelsteenNr, int spelerNr) {
         ArrayList<Dobbelsteen> getdobbelsteen = spelers.get(spelerNr).getDobbelstenen();
         boolean bool = getdobbelsteen.get(dobbelsteenNr).vasthouden;
         return bool;
     }
-    public int getDobbelsteenNr() {
-        return dobbelsteenNr;
-    }
 
-    public void setVast() {
-        if (vasthouden == true) {
+    private void setVast() {
+        if (vasthouden) {
             vasthouden = false;
         } else {
             vasthouden = true;
         }
     }
 
-    public static void setVasthouden(String vasthouden, int spelerNr) {
+     static void setVasthouden(String vasthouden, int spelerNr) {
         int length = vasthouden.length();
         for (int i = 0; i < length; i++) {
             int positie = Character.getNumericValue(vasthouden.charAt(i)) - 1;
@@ -80,12 +77,7 @@ public class Dobbelsteen {
         }
     }
 
-    public String getDobbelsteenString() {
+    String getDobbelsteenString() {
         return dobbelWaardeString;
-    }
-
-    public String getDobbelsteen() {
-        String dobbelsteen = dobbelsteenNr + " " + dobbelWaarde;
-        return dobbelsteen;
     }
 }

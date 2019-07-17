@@ -1,5 +1,6 @@
 package nl.qien.WeekopdrachtYahtzee;
 
+import javax.lang.model.SourceVersion;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ public class Speler {
     private String spelerNaam;
     private ArrayList<Dobbelsteen> dobbelsteenLijst;
     private boolean volgendeRonde;
+    private ArrayList<StringBuilder> scorelijst;
 
 
     public static void registreerSpelers(int numberPeople) {
@@ -17,15 +19,16 @@ public class Speler {
             String SpelerNaam;
             System.out.println("Hallo speler " + (i + 1) + ", wat is jouw naam?:");
             SpelerNaam = reader.nextLine();
-            Spelers.add(new Speler(i, SpelerNaam, new ArrayList<Dobbelsteen>(), true));
+            Spelers.add(new Speler(i, SpelerNaam, new ArrayList<Dobbelsteen>(), true, new ArrayList<StringBuilder>()));
         }
     }
 
-    public Speler(int spelerNr, String spelerNaam, ArrayList<Dobbelsteen> dobbelsteenLijst, boolean volgendeRonde) {
+    public Speler(int spelerNr, String spelerNaam, ArrayList<Dobbelsteen> dobbelsteenLijst, boolean volgendeRonde, ArrayList<StringBuilder> scorelijst) {
         this.spelerNr = spelerNr;
         this.spelerNaam = spelerNaam;
         this.dobbelsteenLijst = dobbelsteenLijst;
         this.volgendeRonde = volgendeRonde;
+        this.scorelijst = scorelijst;
     }
 
     public static ArrayList<Speler> getSpelers() {
@@ -65,6 +68,20 @@ public class Speler {
             dobbelsteenLijst.add(dobbelsteen);
             return null;
         }
+    }
+    public ArrayList<ScoreKaart> setScore(StringBuilder waarde) {
+       scorelijst.add(waarde);
+        return null;
+    }
+    public ArrayList<ScoreKaart> getScore() {
+        System.out.println("");
+        System.out.println("Dit is/zijn je behaalde scores!");
+        System.out.println("");
+        for (int i = 0; i < scorelijst.size(); i++) {
+            int j = i + 1;
+            System.out.println("Ronde " + j + ":" +scorelijst.get(i));
+        }
+        return null;
     }
 }
 
